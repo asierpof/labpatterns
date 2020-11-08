@@ -13,6 +13,7 @@ import javax.swing.JComboBox;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.util.Observable;
 import java.awt.event.ActionEvent;
 import java.awt.Font;
 
@@ -76,10 +77,10 @@ public class PacientSymptomGUI extends JFrame {
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				errorLabel.setText(" ");
-				if (new Integer(weightField.getText())<=3) {
+				if ( Integer.parseInt(weightField.getText())<=3) {
 		    	System.out.println("Symptom added :"+(Symptom)symptomComboBox.getSelectedItem());
 
-				//addSymptomByName ...
+		    	p.addSymptomByName(((Symptom)symptomComboBox.getSelectedItem()).getName(), new Integer(weightField.getText()));
 				
 			} else errorLabel.setText("ERROR, Weight between [1..3]");
 				
@@ -95,7 +96,7 @@ public class PacientSymptomGUI extends JFrame {
 
 		    	System.out.println("Symptom removed :"+(Symptom)symptomComboBox.getSelectedItem());
 
-				//removeSymptomByName...
+		    	p.removeSymptomByName(((Symptom)symptomComboBox.getSelectedItem()).getName());
 				
 			} 
 		});
